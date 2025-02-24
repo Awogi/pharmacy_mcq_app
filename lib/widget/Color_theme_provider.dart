@@ -21,7 +21,7 @@ class ThemeProvider with ChangeNotifier {
         backgroundColor: Color(0xFF01949a), // Light mode AppBar color
       ),
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: Colors.white),  // Light mode text color
+        bodyLarge: TextStyle(color: Colors.black),  // Light mode text color
       ),
     );
   }

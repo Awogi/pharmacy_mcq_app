@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// import 'package:pharmacy_mcq_app/widget/Authentication_provider.dart';
 import '../pages/Welcome_page.dart';
 import './screen/splash.dart';
 import '../widget/Color_theme_provider.dart';
 import 'package:provider/provider.dart';
+import '../widget/Navigate_pages.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +20,14 @@ Future main() async {
   } else {
     await Firebase.initializeApp();
   }
-  runApp(ChangeNotifierProvider(
-    create:(context)=>ThemeProvider(),
-    child: const MyApp()));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context)=> ThemeProvider()),
+      ChangeNotifierProvider(create: (context)=>PageNavigator()),
+      // ChangeNotifierProvider(create: (context)=>AuthProvider()),
+    ],
+    child: const MyApp()
+    ));
 }
 
 class MyApp extends StatelessWidget {
