@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 // main theme color
-Color theme_blue = Color(0xFF01949a);
+Color themeblue = Color(0xFF01949a);
 // light theme in color
-Color theme_light= Colors.white;
+Color themelight = Colors.white;
 // dark theme color
-Color theme_dark = Colors.black;
+Color themedark = Colors.black;
 // others theme colors fo the app;
-Color theme_grey = Color(0xFFF2EFE7);
+Color themegrey = Color(0xFFF2EFE7);

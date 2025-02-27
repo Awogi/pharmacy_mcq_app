@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pharmacy_mcq_app/widget/constant_color.dart';
+import 'package:email_validator/email_validator.dart';
 
 class FormContainer extends StatefulWidget {
   final TextEditingController? controller;
@@ -43,14 +45,14 @@ class _FormContainerState extends State<FormContainer> {
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(10),
-        border: Border( bottom: BorderSide(width: 2,color: theme_blue),)
-        
+        border: Border(bottom: BorderSide(width: 2, color: themeblue)),
       ),
       child: TextFormField(
         controller: widget.controller,
         key: widget.fieldkey,
         keyboardType: widget.inputType,
         validator: widget.validator,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         onFieldSubmitted: widget.onfieldSubmitted,
         obscureText: widget.isPasswordField == true ? _obsecure : false,
         decoration: InputDecoration(
@@ -68,7 +70,7 @@ class _FormContainerState extends State<FormContainer> {
                     },
                     child: Icon(
                       _obsecure ? Icons.visibility_off : Icons.visibility,
-                      color: _obsecure == false ? theme_blue : theme_grey,
+                      color: _obsecure == false ? themeblue : themegrey,
                     ),
                   )
                   : null,

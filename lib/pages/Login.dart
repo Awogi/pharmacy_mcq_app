@@ -36,136 +36,250 @@ class _SignInPageState extends State<SignInPage> {
         child: Stack(
           children: [
             Positioned(
-              top: MediaQuery.of(context).size.height *0.01,
-              left: 0, // Added left positioning to ensure the container is full width
+              top: MediaQuery.of(context).size.height * 0.01,
+              left:
+                  0, // Added left positioning to ensure the container is full width
               right: 0,
               child: Container(
                 width: double.infinity,
-              height: MediaQuery.of(context).size.height *0.4,
-              color: theme_blue,
-            )),
-            Positioned(
-              top: MediaQuery.of(context).size.height *0.15,
-              left: 0, // Added left positioning to ensure the container is full width
-              right: 0,
-              child: Text("Welcome",
-             style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width *0.15,
-                    fontFamily:"Ubuntu",
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                    fontWeight: FontWeight.bold
-                  ),
-            )),
-             Positioned(
-              top: MediaQuery.of(context).size.height *0.25,
-              left: 0, // Added left positioning to ensure the container is full width
-              right: 0,
-              child: Text("Back",
-             style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width *0.15,
-                    fontFamily:"Ubuntu",
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                    fontWeight: FontWeight.bold
-                  ),
-            )),
-           
-            Positioned(
-              top: MediaQuery.of(context).size.height *0.55,
-              left:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1 ,
-              right:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1,
-              child: Container(
-                width:kIsWeb? MediaQuery.of(context).size.width *0.7:MediaQuery.of(context).size.width *0.8 ,
-                height:kIsWeb? MediaQuery.of(context).size.height *0.07: MediaQuery.of(context).size.width *0.4,
-              child: FormContainer(
-                prefixIcon: Icon(Icons.mail),
-                 controller: _emailController,
-              hintText: 'Mail',
-              isPasswordField: false,
+                height: MediaQuery.of(context).size.height * 0.4,
+                color: themeblue,
               ),
-            )),
+            ),
             Positioned(
-              top: MediaQuery.of(context).size.height *0.65,
-              left:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1 ,
-              right:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1,
-              child: Container(
-                width:kIsWeb? MediaQuery.of(context).size.width *0.7:MediaQuery.of(context).size.width *0.8 ,
-                height:kIsWeb? MediaQuery.of(context).size.height *0.07: MediaQuery.of(context).size.width *0.4,
-              child: FormContainer(
-                prefixIcon: Icon(Icons.password),
-                 controller: _passwordController,
-              hintText: 'password',
-              isPasswordField: true,
+              top: MediaQuery.of(context).size.height * 0.15,
+              left:
+                  0, // Added left positioning to ensure the container is full width
+              right: 0,
+              child: Text(
+                "Welcome",
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.15,
+                  fontFamily: "Ubuntu",
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            )),
+            ),
             Positioned(
-              top: MediaQuery.of(context).size.height *0.73,
-              left:kIsWeb? MediaQuery.of(context).size.width *0.6:MediaQuery.of(context).size.width *0.1 ,
-              right:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1,
+              top: MediaQuery.of(context).size.height * 0.25,
+              left:
+                  0, // Added left positioning to ensure the container is full width
+              right: 0,
+              child: Text(
+                "Back",
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.15,
+                  fontFamily: "Ubuntu",
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.55,
+              left:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              right:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              child: Container(
+                width:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.7
+                        : MediaQuery.of(context).size.width * 0.8,
+                height:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.height * 0.07
+                        : MediaQuery.of(context).size.width * 0.4,
+                child: FormContainer(
+                  prefixIcon: Icon(Icons.mail),
+                  controller: _emailController,
+                  hintText: 'Mail',
+                  isPasswordField: false,
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.65,
+              left:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              right:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              child: Container(
+                width:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.7
+                        : MediaQuery.of(context).size.width * 0.8,
+                height:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.height * 0.07
+                        : MediaQuery.of(context).size.width * 0.4,
+                child: FormContainer(
+                  prefixIcon: Icon(Icons.password),
+                  controller: _passwordController,
+                  hintText: 'password',
+                  isPasswordField: true,
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.73,
+              left:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.6
+                      : MediaQuery.of(context).size.width * 0.1,
+              right:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
               child: GestureDetector(
-                onTap: (){
-                   Navigator.pushAndRemoveUntil(
+                onTap: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SendOtp()),
-                    (route) => false,
                   );
                 },
-                child: Text("Forget password",
-                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width *0.02,
-                    fontFamily:"Ubuntu",
-                    color: theme_blue,
+                child: Text(
+                  "Forgot password ?",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.02,
+                    fontFamily: "Ubuntu",
+                    color: themeblue,
                     // fontWeight: FontWeight.bold
                   ),
-                )
                 ),
+              ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height *0.8,
-              left:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1 ,
-              right:kIsWeb? MediaQuery.of(context).size.width *0.2:MediaQuery.of(context).size.width *0.1,
-              child:  GestureDetector(
-                onTap: (){
-                              Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                    (route) => false,
-                  );
-                },
-            child: Container(
-              width:kIsWeb? MediaQuery.of(context).size.width *0.6:MediaQuery.of(context).size.width *0.5 ,
-                height:kIsWeb? MediaQuery.of(context).size.height *0.07: MediaQuery.of(context).size.width *0.2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: theme_blue,
-              ),
-              child:  Center(
-                child: Text(
-                  'Log In',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily:"Ubuntu",
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                    fontWeight: FontWeight.bold
+              top: MediaQuery.of(context).size.height * 0.8,
+              left:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              right:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              child: GestureDetector(
+                onTap: _LogIn,
+                child: Container(
+                  width:
+                      kIsWeb
+                          ? MediaQuery.of(context).size.width * 0.6
+                          : MediaQuery.of(context).size.width * 0.5,
+                  height:
+                      kIsWeb
+                          ? MediaQuery.of(context).size.height * 0.07
+                          : MediaQuery.of(context).size.width * 0.2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: themeblue,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Log In',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Ubuntu",
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-            )
+
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.9,
+              child: Container(
+                width:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.4
+                        : MediaQuery.of(context).size.width * 0.5,
+                height:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.height * 0.09
+                        : MediaQuery.of(context).size.width * 0.2,
+
+                child: Text("Don't you have an account?"),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.6,
+              child: Container(
+                width:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.8
+                        : MediaQuery.of(context).size.width * 0.5,
+                height:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.height * 0.09
+                        : MediaQuery.of(context).size.width * 0.2,
+
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupPage()),
+                    );
+                  },
+                  child: Text("Sign Up"),
+                ),
+              ),
+            ),
           ],
         ),
       ),
-      
-
     );
   }
 
   void _LogIn() async {
     String email = _emailController.text;
     String password = _passwordController.text;
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    try {
+      User? user = await _auth.signInWithEmailAndPassword(email, password);
 
-    if (user != null) {
-    } else {}
+      if (user != null) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+          (route) => false,
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please fill all the fields.")),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = "An error occurred. Please try again.";
+
+      if (e.code == 'user-not-found') {
+        errorMessage = "No user found with this email.";
+      } else if (e.code == 'wrong-password') {
+        errorMessage = "Incorrect password.";
+      } else if (e.code == 'invalid-email') {
+        errorMessage = "Invalid email address.";
+      } else if (e.code == 'too-many-requests') {
+        errorMessage = "Too many requests. Try again later.";
+      }
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(errorMessage)));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("An unexpected error occurred.")),
+      );
+    }
   }
 }
