@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pharmacy_mcq_app/pages/sign_up.dart';
+import 'package:pharmacy_mcq_app/widget/navigate_pages.dart';
 import '../widget/constant_color.dart';
 import 'login.dart';
-import '../widget/Navigate_pages.dart';
+
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {

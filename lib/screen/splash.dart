@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<ThemeProvider>(
-        builder: (context, themeProvider, child) {
+        builder: (context, ThemeProvider, child) {
           return Center(
             child: Container(
               width: kIsWeb ? 200 : 100,
