@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:pharmacy_mcq_app/widget/Authentication_provider.dart';
+import 'package:pharmacy_mcq_app/widget/bottom_nav_Provider.dart';
 import '../pages/Welcome_page.dart';
 import './screen/splash.dart';
 import 'widget/color_theme_provider.dart';
@@ -22,12 +22,13 @@ Future main() async {
   } else {
     await Firebase.initializeApp();
   }
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => PageNavigator()),
-        // ChangeNotifierProvider(create: (context)=>AuthProvider()),
+        ChangeNotifierProvider(create: (context) => BottomNavProvider()),
       ],
       child: const MyApp(),
     ),
@@ -37,21 +38,18 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          themeMode:
-              themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          theme: themeProvider.lightTheme,
-          darkTheme: themeProvider.darkTheme,
-          home: const SplashScreen(
-            child: WelcomePage(),
-          ), // Use your SplashScreen or WelcomePage
-        );
-      },
-    );
-  }
+ @override
+Widget build(BuildContext context) {
+  return Consumer<ThemeProvider>(
+    builder: (context, themeProvider, child) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: themeProvider.currentTheme,
+        home: const SplashScreen(
+          child: WelcomePage(),
+        ),
+      );
+    },
+  );
+}
 }

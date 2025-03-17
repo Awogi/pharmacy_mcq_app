@@ -8,3 +8,5 @@ Color themelight = Colors.white;
 Color themedark = Colors.black;
 // others theme colors fo the app;
 Color themegrey = Color(0xFFF2EFE7);
+Color themegreydarker=Color.fromARGB(123, 0, 0, 0);
+Color themegreylight= const Color.fromARGB(61, 215, 212, 212);

@@ -1,9 +1,5 @@
-import 'dart:developer';
-import 'dart:math';
-
+import '../widget/constant_color.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmacy_mcq_app/widget/constant_color.dart';
-import 'package:email_validator/email_validator.dart';
 
 class FormContainer extends StatefulWidget {
   final TextEditingController? controller;
@@ -39,41 +35,60 @@ class FormContainer extends StatefulWidget {
 
 class _FormContainerState extends State<FormContainer> {
   bool _obsecure = true;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(10),
-        border: Border(bottom: BorderSide(width: 2, color: themeblue)),
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        key: widget.fieldkey,
-        keyboardType: widget.inputType,
-        validator: widget.validator,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        onFieldSubmitted: widget.onfieldSubmitted,
-        obscureText: widget.isPasswordField == true ? _obsecure : false,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.black, fontFamily: "Ubuntu"),
-          prefixIcon: widget.prefixIcon,
-          suffixIcon:
-              widget.isPasswordField == true
-                  ? GestureDetector(
-                    onTap: () {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(10),
+          border: Border(bottom: BorderSide(width: 2, color: themeblue)),
+        ),
+        child: TextFormField(
+          controller: widget.controller,
+          key: widget.fieldkey,
+          keyboardType: widget.inputType,
+          validator: widget.validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          onFieldSubmitted: widget.onfieldSubmitted,
+          obscureText: widget.isPasswordField == true ? _obsecure : false,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: widget.hintText,
+            hintStyle: TextStyle(
+              color: const Color.fromARGB(123, 0, 0, 0),
+              fontFamily: "Ubuntu",
+              fontSize: MediaQuery.of(context).size.width * 0.03,
+            ),
+            prefixIcon: widget.prefixIcon,
+            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            errorMaxLines: 1,
+            errorStyle: TextStyle(
+              color: themegreydarker,
+              fontFamily: "Ubuntu",
+              fontSize: MediaQuery.of(context).size.width * 0.03,
+            ),
+            suffixIcon: widget.isPasswordField == true
+                ? IconButton(
+                    onPressed: () {
                       setState(() {
                         _obsecure = !_obsecure;
                       });
                     },
-                    child: Icon(
+                    icon: Icon(
                       _obsecure ? Icons.visibility_off : Icons.visibility,
-                      color: _obsecure == false ? themeblue : themegrey,
+                      color: _obsecure ? themegreydarker : themedark,
                     ),
                   )
-                  : null,
+                : null,
+          ),
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: "Ubuntu",
+            fontSize: MediaQuery.of(context).size.width * 0.03,
+          ),
         ),
       ),
     );
