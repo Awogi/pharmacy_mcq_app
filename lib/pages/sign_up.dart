@@ -37,22 +37,32 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+    return SingleChildScrollView(
+      child: Scaffold(
+        body: Container(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
             children: [
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.01,
-                left:MediaQuery.of(context).size.width * 0.01,
+                top: MediaQuery.of(context).size.height * 0,
+                left:MediaQuery.of(context).size.width * 0,
                     // Added left positioning to ensure the container is full width
                 right: 0,
                 child: Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.4,
-                  color: themeblue,
+                  decoration: BoxDecoration(
+                      color: themeblue,
+                      borderRadius: BorderRadius.horizontal(right: Radius.circular(30),left: Radius.circular(30) ),
+                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),]
+                  ),
                 ),
               ),
               Positioned(
@@ -104,6 +114,16 @@ class _SignupPageState extends State<SignupPage> {
                       kIsWeb
                           ? MediaQuery.of(context).size.height * 0.07
                           : MediaQuery.of(context).size.width * 0.18,
+      
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),]
+                  ),
                   child: Expanded(
                     child: FormContainer(
                       prefixIcon: Icon(Icons.person),
@@ -133,6 +153,15 @@ class _SignupPageState extends State<SignupPage> {
                       kIsWeb
                           ? MediaQuery.of(context).size.height * 0.07
                           : MediaQuery.of(context).size.width * 0.18,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),]
+                  ),
                   child: Expanded(
                     child: FormContainer(
                       prefixIcon: Icon(Icons.mail),
@@ -167,6 +196,15 @@ class _SignupPageState extends State<SignupPage> {
                       kIsWeb
                           ? MediaQuery.of(context).size.height * 0.07
                           : MediaQuery.of(context).size.width * 0.18,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),]
+                  ),
                   child: Expanded(
                     child: FormContainer(
                       prefixIcon: Icon(Icons.password),
@@ -204,14 +242,20 @@ class _SignupPageState extends State<SignupPage> {
                             ? MediaQuery.of(context).size.height * 0.07
                             : MediaQuery.of(context).size.width * 0.15,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
                       color: themeblue,
-                    ),
+                      boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),]
+                  ),
                     child: Center(
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: MediaQuery.of(context).size.width * 0.03,
                           fontFamily: "Ubuntu",
                           color: Theme.of(context).textTheme.bodyLarge?.color,
                           fontWeight: FontWeight.bold,
@@ -232,6 +276,7 @@ class _SignupPageState extends State<SignupPage> {
                     kIsWeb
                         ? MediaQuery.of(context).size.width * 0.25
                         : MediaQuery.of(context).size.width * 0.1,
+                  
                 child: Container(
                   // width:
                   //     kIsWeb
@@ -241,10 +286,11 @@ class _SignupPageState extends State<SignupPage> {
                   //     kIsWeb
                   //         ? MediaQuery.of(context).size.height * 0.09
                   //         : MediaQuery.of(context).size.width * 0.2,
+                  
         
                   child: Text("Already have an account?",
                   style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.02,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontFamily: "Ubuntu",
                         color:
                             Theme.of(context).textTheme.bodyLarge?.color ==
