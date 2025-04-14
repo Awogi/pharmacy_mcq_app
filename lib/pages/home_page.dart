@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_mcq_app/widget/constant_color.dart';
+import 'package:pharmacy_mcq_app/widget/navigation_bar.dart';
 import 'package:provider/provider.dart';
-// import '../widget/bottom_nav_Provider.dart';
-import '../widget/Bottom_nav_bar.dart';
 import '../widget/Color_theme_provider.dart';
 import '../pages/Diploma_in_Pharmacy.dart';
 import '../pages/Bachelors_in_Pharmacy.dart';
+import '../widget/navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String username;
+  const HomePage({super.key, required this.username});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer:NavBar() ,
       // appBar: AppBar(
       //   // title: Center(
       //   //   child: Text(
@@ -115,17 +117,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.062,
-              left: MediaQuery.of(context).size.width * 0.85,
+              top: MediaQuery.of(context).size.height * 0.06,
               right: MediaQuery.of(context).size.width * 0.05,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.003,
-                height: MediaQuery.of(context).size.height * 0.035,
-
+                width: MediaQuery.of(context).size.height * 0.04,
+                height: MediaQuery.of(context).size.height * 0.04,
                 decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: themeblue,
+                  borderRadius: BorderRadius.horizontal(
+                    right: Radius.circular(8),
+                    left: Radius.circular(8),
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
@@ -138,17 +140,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.062,
-              left: MediaQuery.of(context).size.width * 0.055,
-              right: MediaQuery.of(context).size.width * 0.85,
+              top: MediaQuery.of(context).size.height * 0.06,
+              left: MediaQuery.of(context).size.width * 0.05,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.003,
-                height: MediaQuery.of(context).size.height * 0.035,
-
+                width: MediaQuery.of(context).size.height * 0.04,
+                height: MediaQuery.of(context).size.height * 0.04,
                 decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: themeblue,
+                  borderRadius: BorderRadius.horizontal(
+                    right: Radius.circular(8),
+                    left: Radius.circular(8),
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
@@ -163,17 +165,24 @@ class _HomePageState extends State<HomePage> {
 
             Positioned(
               top: MediaQuery.of(context).size.height * 0.05,
-              left: MediaQuery.of(context).size.width * 0.05,
+              left: MediaQuery.of(context).size.width * 0.04,
               right: MediaQuery.of(context).size.width * 0.85,
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.menu,
-                  color:
-                      Theme.of(context).iconTheme.color == Colors.black
-                          ? Colors.white
-                          : Colors.black,
-                ),
+              child: Builder(
+                builder: (context) {
+                  return IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+
+                    icon: Icon(
+                      Icons.menu,
+                      color:
+                          Theme.of(context).iconTheme.color == Colors.black
+                              ? Colors.white
+                              : Colors.black,
+                    ),
+                  );
+                },
               ),
             ),
             Positioned(
@@ -189,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                     ).toggleTheme();
                   },
                   icon: Icon(
-                    Icons.wb_sunny,
+                    Icons.person,
                     color:
                         Theme.of(context).iconTheme.color == Colors.black
                             ? Colors.white
@@ -217,7 +226,7 @@ class _HomePageState extends State<HomePage> {
               left: MediaQuery.of(context).size.width * 0.01,
               right: MediaQuery.of(context).size.width * 0.01,
               child: Text(
-                " Richa Adhikari",
+                widget.username,
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.05,
                   fontFamily: "Ubuntu",
@@ -250,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const diplomaInPharmacy(),
+                        builder: (context) => DiplomaInPharmacy(),
                       ),
                     );
                   },
@@ -302,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const bachelorsInPharmacy(),
+                        builder: (context) => const BachelorsInPharmacy(),
                       ),
                     );
                   },
@@ -333,7 +342,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widget/Bottom_nav_bar.dart';
 class profilePage extends StatefulWidget {
   const profilePage({super.key});
 
@@ -14,7 +13,6 @@ class _profilePageState extends State<profilePage> {
       appBar: AppBar(
         title: Text("This is profile Page"),
       ),
-      bottomNavigationBar: BottomAppBar(),
       );
   }
 }

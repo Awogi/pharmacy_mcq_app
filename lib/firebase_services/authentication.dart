@@ -32,7 +32,10 @@ class FirebaseAuthService {
           email: email,
           password: password,
         );
-      } catch (e) {}
+        return credential.user;
+      } catch (e) {
+        print("Login error: $e");
+      }
     }
     return null;
   }

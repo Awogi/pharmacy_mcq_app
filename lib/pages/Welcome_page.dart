@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pharmacy_mcq_app/pages/Home_page.dart';
-import 'package:pharmacy_mcq_app/pages/sign_up.dart';
+import 'package:pharmacy_mcq_app/pages/login.dart';
 import 'package:pharmacy_mcq_app/widget/navigate_pages.dart';
 import '../widget/constant_color.dart';
-import 'login.dart';
-
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -21,7 +19,7 @@ class _WelcomePageState extends State<WelcomePage> {
     var pagenavigator = Provider.of<PageNavigator>(context, listen: false);
     pagenavigator.setContext(context);
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Stack(
@@ -33,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
               left: 0,
               right: 0,
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width:
                       kIsWeb
                           ? MediaQuery.of(context).size.width * 0.9

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widget/Bottom_nav_bar.dart';
 class settingsPage extends StatefulWidget {
   const settingsPage({super.key});
 
@@ -15,7 +14,6 @@ class _settingsPageState extends State<settingsPage> {
         title: Text("This is Settings Page"),
         
       ),
-      bottomNavigationBar: BottomAppBar(),
       );
   }
 }
