@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-class settingsPage extends StatefulWidget {
-  const settingsPage({super.key});
+
+class SettingPage extends StatefulWidget {
+  const SettingPage({super.key});
 
   @override
-  State<settingsPage> createState() => _settingsPageState();
+  State<SettingPage> createState() => _SettingPageState();
 }
 
-class _settingsPageState extends State<settingsPage> {
+class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("This is Settings Page"),
-        
-      ),
-      );
+    return Scaffold(appBar: AppBar(title: Text("This is Settings Page")));
   }
 }

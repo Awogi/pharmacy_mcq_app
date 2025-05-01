@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../pages/Welcome_page.dart';
+import 'pages/welcome_page.dart';
 import './screen/splash.dart';
 import 'widget/color_theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -36,18 +36,16 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
- @override
-Widget build(BuildContext context) {
-  return Consumer<ThemeProvider>(
-    builder: (context, themeProvider, child) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: themeProvider.currentTheme,
-        home: const SplashScreen(
-          child: WelcomePage(),
-        ),
-      );
-    },
-  );
-}
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: themeProvider.currentTheme,
+          home: const SplashScreen(child: WelcomePage()),
+        );
+      },
+    );
+  }
 }
