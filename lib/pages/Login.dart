@@ -313,7 +313,8 @@ class _SignInPageState extends State<SignInPage> {
     }
 
     try {
-      User? user = await _auth.signInWithEmailAndPassword(email, password);
+      User? user = await FirebaseAuthService().signInWithEmailAndPassword(email, password);
+
 
       if (user != null) {
         // Fetch username from Firestore after successful login
@@ -324,10 +325,11 @@ class _SignInPageState extends State<SignInPage> {
                 .get();
 
         String username = userDoc['username'];
+        String email = userDoc['email'];
 
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage(username: username)),
+          MaterialPageRoute(builder: (context) => HomePage(username: username,email: email)),
           (route) => false,
         );
       } else {

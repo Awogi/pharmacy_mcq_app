@@ -337,22 +337,23 @@ class _SignupPageState extends State<SignupPage> {
       builder: (context) => Center(child: CircularProgressIndicator()),
     );
     try {
-      User? user = await _auth.createUserWithEmailAndPassword(
-        _userController.text,
-        _emailController.text,
-        _passwordController.text,
-      );
+      User? user = await FirebaseAuthService().createUserWithEmailAndPassword(
+  _userController.text,
+  _emailController.text,
+  _passwordController.text,
+);
+
       // Dismiss the loading dialog
       if (mounted) Navigator.of(context).pop();
       if (user != null) {
         await FirebaseFirestore.instance
     .collection('users')
     .doc(user.uid)
-    .set({'username': _userController.text});
+    .set({'username': _userController.text,'email':_emailController});
 
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage(username:"username")),
+          MaterialPageRoute(builder: (context) => HomePage(username:"username", email:"email")),
           (route) => false,
         );
       } else {

@@ -9,7 +9,8 @@ import '../widget/navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
-  const HomePage({super.key, required this.username});
+  final String email;
+  const HomePage({super.key, required this.username, required this.email});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:NavBar() ,
+      drawer:NavBar(username:"username",email:"email",) ,
       // appBar: AppBar(
       //   // title: Center(
       //   //   child: Text(
