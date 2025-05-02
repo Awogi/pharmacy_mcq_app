@@ -1,14 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../firebase_services/authentication.dart';
 import '../firebase_services/form_container.dart';
-import 'login.dart';
+import '../pages/log_in.dart';
 import '../widget/constant_color.dart';
 import 'package:flutter/foundation.dart';
-import '../pages/Home_page.dart';
 import 'package:email_validator/email_validator.dart';
+import '../pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -18,8 +17,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final FirebaseAuthService _auth =
-      FirebaseAuthService(); // Create an instance of `FirebaseAuthService` to handle authentication logic.
+  final AuthenticationService _auth =
+      AuthenticationService(); // Create an instance of `FirebaseAuthService` to handle authentication logic.
 
   //manage input from text fields.
   final TextEditingController _userController = TextEditingController();
@@ -38,29 +37,33 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Stack(
           children: [
             Positioned(
               top: MediaQuery.of(context).size.height * 0,
-              left:MediaQuery.of(context).size.width * 0,
-                  // Added left positioning to ensure the container is full width
+              left: MediaQuery.of(context).size.width * 0,
+              // Added left positioning to ensure the container is full width
               right: 0,
               child: Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
-                    color: themeblue,
-                    borderRadius: BorderRadius.horizontal(right: Radius.circular(30),left: Radius.circular(30) ),
-                    boxShadow: [
+                  color: themeblue,
+                  borderRadius: BorderRadius.horizontal(
+                    right: Radius.circular(30),
+                    left: Radius.circular(30),
+                  ),
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
                       blurRadius: 8,
                       spreadRadius: 2,
                       offset: Offset(3, 3),
-                    ),]
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -113,15 +116,16 @@ class _SignupPageState extends State<SignupPage> {
                     kIsWeb
                         ? MediaQuery.of(context).size.height * 0.07
                         : MediaQuery.of(context).size.width * 0.18,
-    
+
                 decoration: BoxDecoration(
-                    boxShadow: [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
                       blurRadius: 8,
                       spreadRadius: 2,
                       offset: Offset(3, 3),
-                    ),]
+                    ),
+                  ],
                 ),
                 child: FormContainer(
                   prefixIcon: Icon(Icons.person),
@@ -151,13 +155,14 @@ class _SignupPageState extends State<SignupPage> {
                         ? MediaQuery.of(context).size.height * 0.07
                         : MediaQuery.of(context).size.width * 0.18,
                 decoration: BoxDecoration(
-                    boxShadow: [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
                       blurRadius: 8,
                       spreadRadius: 2,
                       offset: Offset(3, 3),
-                    ),]
+                    ),
+                  ],
                 ),
                 child: FormContainer(
                   prefixIcon: Icon(Icons.mail),
@@ -166,7 +171,7 @@ class _SignupPageState extends State<SignupPage> {
                   validator:
                       (email) =>
                           email != null && !EmailValidator.validate(email)
-                              ? 'Enter a valid email' 
+                              ? 'Enter a valid email'
                               : null,
                   isPasswordField: false,
                 ),
@@ -192,13 +197,14 @@ class _SignupPageState extends State<SignupPage> {
                         ? MediaQuery.of(context).size.height * 0.07
                         : MediaQuery.of(context).size.width * 0.18,
                 decoration: BoxDecoration(
-                    boxShadow: [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
                       blurRadius: 8,
                       spreadRadius: 2,
                       offset: Offset(3, 3),
-                    ),]
+                    ),
+                  ],
                 ),
                 child: FormContainer(
                   prefixIcon: Icon(Icons.password),
@@ -224,7 +230,14 @@ class _SignupPageState extends State<SignupPage> {
                       ? MediaQuery.of(context).size.width * 0.2
                       : MediaQuery.of(context).size.width * 0.1,
               child: GestureDetector(
-                onTap: _signUp,
+                onTap: () {
+                  _auth.signUp(
+                    context,
+                    _emailController.text,
+                    _passwordController.text,
+                    _userController.text,
+                  );
+                },
                 child: Container(
                   width:
                       kIsWeb
@@ -237,13 +250,14 @@ class _SignupPageState extends State<SignupPage> {
                   decoration: BoxDecoration(
                     color: themeblue,
                     boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(50),
-                      blurRadius: 8,
-                      spreadRadius: 2,
-                      offset: Offset(3, 3),
-                    ),]
-                ),
+                      BoxShadow(
+                        color: Colors.black.withAlpha(50),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
+                  ),
                   child: Center(
                     child: Text(
                       'Sign Up',
@@ -258,10 +272,10 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-      
+
             Positioned(
               top: MediaQuery.of(context).size.height * 0.83,
-               left:
+              left:
                   kIsWeb
                       ? MediaQuery.of(context).size.width * 0.35
                       : MediaQuery.of(context).size.width * 0.23,
@@ -269,26 +283,23 @@ class _SignupPageState extends State<SignupPage> {
                   kIsWeb
                       ? MediaQuery.of(context).size.width * 0.25
                       : MediaQuery.of(context).size.width * 0.1,
-                
-            
-                
-      
-                child: Text("Already have an account?",
+
+              child: Text(
+                "Already have an account?",
                 style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.03,
-                      fontFamily: "Ubuntu",
-                      color:
-                          Theme.of(context).textTheme.bodyLarge?.color ==
-                                  themelight
-                              ? Colors.black
-                              : Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontSize: MediaQuery.of(context).size.width * 0.03,
+                  fontFamily: "Ubuntu",
+                  color:
+                      Theme.of(context).textTheme.bodyLarge?.color == themelight
+                          ? Colors.black
+                          : Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
             ),
             Positioned(
               top: MediaQuery.of(context).size.height * 0.83,
-               left:
+              left:
                   kIsWeb
                       ? MediaQuery.of(context).size.width * 0.63
                       : MediaQuery.of(context).size.width * 0.64,
@@ -296,25 +307,25 @@ class _SignupPageState extends State<SignupPage> {
                   kIsWeb
                       ? MediaQuery.of(context).size.width * 0.25
                       : MediaQuery.of(context).size.width * 0.2,
-      
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignInPage()),
-                    );
-                  },
-                  child: Text("Log In",
-                   style: TextStyle(
-                      fontSize:MediaQuery.of(context).size.width * 0.02,
-                      fontFamily: "Ubuntu",
-                      color:themeblue,
-                      fontWeight: FontWeight.bold,
-                    ),
+
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInPage()),
+                  );
+                },
+                child: Text(
+                  "Log In",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.02,
+                    fontFamily: "Ubuntu",
+                    color: themeblue,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            
+            ),
           ],
         ),
       ),
@@ -349,11 +360,11 @@ class _SignupPageState extends State<SignupPage> {
         await FirebaseFirestore.instance
     .collection('users')
     .doc(user.uid)
-    .set({'username': _userController.text,'email':_emailController});
+    .set({'username': _userController.text,'email':_emailController.text.trim()});
 
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage(username:"username", email:"email")),
+          MaterialPageRoute(builder: (context) => HomePage(username:_userController.text.trim(), email:_emailController.text.trim())),
           (route) => false,
         );
       } else {

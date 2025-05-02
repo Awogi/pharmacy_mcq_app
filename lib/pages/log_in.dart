@@ -1,13 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmacy_mcq_app/pages/Home_page.dart';
 import '../widget/constant_color.dart';
 import '../firebase_services/authentication.dart';
 import '../firebase_services/form_container.dart';
 import '../pages/sign_up.dart';
 import '../pages/Send_Otp.dart';
+import '../pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../firebase_services/authentication.dart';
+
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -17,7 +19,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final FirebaseAuthService _auth = FirebaseAuthService();
+  final AuthenticationService _auth = AuthenticationService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -31,7 +33,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Stack(
@@ -205,7 +207,13 @@ class _SignInPageState extends State<SignInPage> {
                       ? MediaQuery.of(context).size.width * 0.2
                       : MediaQuery.of(context).size.width * 0.1,
               child: GestureDetector(
-                onTap: _LogIn,
+                onTap: () {
+                  _auth.signIn(
+                    context,
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                },
                 child: Container(
                   // width:
                   //     kIsWeb
@@ -238,58 +246,38 @@ class _SignInPageState extends State<SignInPage> {
               top: MediaQuery.of(context).size.height * 0.77,
               left: MediaQuery.of(context).size.width * 0.23,
               right: MediaQuery.of(context).size.width * 0.2,
-              child: Container(
-                // width:
-                //     kIsWeb
-                //         ? MediaQuery.of(context).size.width * 0.4
-                //         : MediaQuery.of(context).size.width * 0.5,
-                // height:
-                //     kIsWeb
-                //         ? MediaQuery.of(context).size.height * 0.09
-                //         : MediaQuery.of(context).size.width * 0.2,
-                child: Text(
-                  "Don't have an account?",
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.03,
-                    fontFamily: "Ubuntu",
-                    color:
-                        Theme.of(context).textTheme.bodyLarge?.color ==
-                                themelight
-                            ? Colors.black
-                            : Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              child: Text(
+                "Don't have an account?",
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.03,
+                  fontFamily: "Ubuntu",
+                  color:
+                      Theme.of(context).textTheme.bodyLarge?.color == themelight
+                          ? Colors.black
+                          : Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+
             Positioned(
               top: MediaQuery.of(context).size.height * 0.77,
               left: MediaQuery.of(context).size.width * 0.62,
               right: MediaQuery.of(context).size.width * 0.2,
-              child: Container(
-                // width:
-                //     kIsWeb
-                //         ? MediaQuery.of(context).size.width * 0.8
-                //         : MediaQuery.of(context).size.width * 0.5,
-                // height:
-                //     kIsWeb
-                //         ? MediaQuery.of(context).size.height * 0.09
-                //         : MediaQuery.of(context).size.width * 0.2,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignupPage()),
-                    );
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.03,
-                      fontFamily: "Ubuntu",
-                      color: themeblue,
-                      fontWeight: FontWeight.bold,
-                    ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupPage()),
+                  );
+                },
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.03,
+                    fontFamily: "Ubuntu",
+                    color: themeblue,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -313,7 +301,7 @@ class _SignInPageState extends State<SignInPage> {
     }
 
     try {
-      User? user = await FirebaseAuthService().signInWithEmailAndPassword(email, password);
+      User? user = await AuthenticationService().signInWithEmailAndPassword(email, password);
 
 
       if (user != null) {

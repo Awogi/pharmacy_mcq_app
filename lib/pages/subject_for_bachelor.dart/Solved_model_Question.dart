@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class solvedQuestions extends StatefulWidget {
-  const solvedQuestions({super.key});
+class SolvedQuestions extends StatefulWidget {
+  const SolvedQuestions({super.key});
 
   @override
-  State<solvedQuestions> createState() => _solvedQuestionsState();
+  State<SolvedQuestions> createState() => _SolvedQuestionsState();
 }
 
-class _solvedQuestionsState extends State<solvedQuestions> {
+class _SolvedQuestionsState extends State<SolvedQuestions> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_mcq_app/pages/subject_for_bachelor.dart/solved_model_question.dart';
+import 'package:pharmacy_mcq_app/pages/subject_for_bachelor.dart/test_questions.dart';
 import 'package:pharmacy_mcq_app/widget/constant_color.dart';
-import '../subject_for_bachelor.dart/Solved_model_Question.dart';
-import '../subject_for_bachelor.dart/Test_Questions.dart';
 
-class modelQuestionB extends StatefulWidget {
-  const modelQuestionB({super.key});
+class ModelQuestionB extends StatefulWidget {
+  const ModelQuestionB({super.key});
 
   @override
-  State<modelQuestionB> createState() => _modelQuestionBState();
+  State<ModelQuestionB> createState() => _ModelQuestionBState();
 }
 
-class _modelQuestionBState extends State<modelQuestionB> {
+class _ModelQuestionBState extends State<ModelQuestionB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width:double.infinity,
+      body: SizedBox(
+        width: double.infinity,
         height: double.infinity,
         child: Stack(
           children: [
-              Positioned(
+            Positioned(
               top: MediaQuery.of(context).size.height * 0,
               left: 0,
               right: 0,
@@ -28,7 +28,7 @@ class _modelQuestionBState extends State<modelQuestionB> {
                 height: MediaQuery.of(context).size.height * 0.27,
                 decoration: BoxDecoration(
                   color: themeblue,
-                  
+
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(50),
@@ -43,24 +43,25 @@ class _modelQuestionBState extends State<modelQuestionB> {
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.06,
                       left: MediaQuery.of(context).size.width * 0.05,
-                      child:Container(
-                        width:  MediaQuery.of(context).size.height * 0.04,
-                        height:  MediaQuery.of(context).size.height * 0.04,
+                      child: Container(
+                        width: MediaQuery.of(context).size.height * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.04,
                         decoration: BoxDecoration(
-                           color: themeblue,
-                           borderRadius: BorderRadius.horizontal(
-                    right: Radius.circular(8),
-                    left: Radius.circular(8),
-                  ),
-                           boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(50),
-                      blurRadius: 8,
-                      spreadRadius: 2,
-                      offset: Offset(3, 3),
-                    ),]
+                          color: themeblue,
+                          borderRadius: BorderRadius.horizontal(
+                            right: Radius.circular(8),
+                            left: Radius.circular(8),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withAlpha(50),
+                              blurRadius: 8,
+                              spreadRadius: 2,
+                              offset: Offset(3, 3),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
                     ),
 
                     Positioned(
@@ -68,11 +69,14 @@ class _modelQuestionBState extends State<modelQuestionB> {
                       left: MediaQuery.of(context).size.width * 0.018,
                       child: IconButton(
                         onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.chevron_left,
-                            color: Theme.of(context).iconTheme.color == Colors.black
-                                ? Colors.white
-                                : Colors.black),
-                                iconSize:MediaQuery.of(context).size.height * 0.05 ,
+                        icon: Icon(
+                          Icons.chevron_left,
+                          color:
+                              Theme.of(context).iconTheme.color == Colors.black
+                                  ? Colors.white
+                                  : Colors.black,
+                        ),
+                        iconSize: MediaQuery.of(context).size.height * 0.05,
                       ),
                     ),
                     Positioned(
@@ -99,7 +103,6 @@ class _modelQuestionBState extends State<modelQuestionB> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   Container(
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.2,
@@ -120,7 +123,7 @@ class _modelQuestionBState extends State<modelQuestionB> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  solvedQuestions(),
+                            builder: (context) => SolvedQuestions(),
                           ),
                         );
                       },
@@ -129,18 +132,22 @@ class _modelQuestionBState extends State<modelQuestionB> {
                           Text(
                             "  Solved Model ",
                             style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.04,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
                               fontFamily: "Ubuntu",
-                              color: Theme.of(context).textTheme.bodyLarge?.color,
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge?.color,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             "  Questions ",
                             style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.04,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
                               fontFamily: "Ubuntu",
-                              color: Theme.of(context).textTheme.bodyLarge?.color,
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge?.color,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -148,9 +155,7 @@ class _modelQuestionBState extends State<modelQuestionB> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width:MediaQuery.of(context).size.width * 0.02 ,
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.2,
@@ -171,7 +176,7 @@ class _modelQuestionBState extends State<modelQuestionB> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  testQuestion(),
+                            builder: (context) => TestQuestion(),
                           ),
                         );
                       },

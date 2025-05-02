@@ -33,9 +33,7 @@ class ThemeProvider extends ChangeNotifier {
       brightness: Brightness.light,
       primaryColor: themeblue,
       scaffoldBackgroundColor: themelight,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFF01949a),
-      ),
+      appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF01949a)),
       iconTheme: const IconThemeData(color: Colors.black), // Define icon color
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: Colors.white), // Light mode text color
@@ -48,13 +46,9 @@ class ThemeProvider extends ChangeNotifier {
       brightness: Brightness.dark,
       primaryColor: const Color(0xFF01949a),
       scaffoldBackgroundColor: Colors.black,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFF01949a),
-      ),
+      appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF01949a)),
       iconTheme: const IconThemeData(color: Colors.white), // Define icon color
-      textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: Colors.black),
-      ),
+      textTheme: const TextTheme(bodyLarge: TextStyle(color: Colors.black)),
     );
   }
 

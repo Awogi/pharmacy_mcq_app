@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pharmacy_mcq_app/pages/Home_page.dart';
-import 'package:pharmacy_mcq_app/pages/login.dart';
+
+import 'package:pharmacy_mcq_app/pages/log_in.dart';
 import 'package:pharmacy_mcq_app/widget/navigate_pages.dart';
 import '../widget/constant_color.dart';
 import 'package:provider/provider.dart';
@@ -46,8 +46,9 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             Positioned(
               top:
-                  MediaQuery.of(context).size.height * 0.6, // Adjust this value for positioning
-              left:MediaQuery.of(context).size.width* 0.07,
+                  MediaQuery.of(context).size.height *
+                  0.6, // Adjust this value for positioning
+              left: MediaQuery.of(context).size.width * 0.07,
               right: MediaQuery.of(context).size.width * 0.07,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -59,9 +60,13 @@ class _WelcomePageState extends State<WelcomePage> {
                     child: Text(
                       "Hello! Welcome to Nepal Pharmacy License ",
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width* 0.03 ,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontFamily: "Ubuntu",
-                        color: (Theme.of(context).textTheme.bodyLarge?.color)==themelight?Colors.black:Colors.white,
+                        color:
+                            (Theme.of(context).textTheme.bodyLarge?.color) ==
+                                    themelight
+                                ? Colors.black
+                                : Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -73,9 +78,13 @@ class _WelcomePageState extends State<WelcomePage> {
                     child: Text(
                       "Practice.",
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width* 0.03,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontFamily: "Ubuntu",
-                        color: (Theme.of(context).textTheme.bodyLarge?.color)==themelight?Colors.black:Colors.white,
+                        color:
+                            (Theme.of(context).textTheme.bodyLarge?.color) ==
+                                    themelight
+                                ? Colors.black
+                                : Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -88,10 +97,14 @@ class _WelcomePageState extends State<WelcomePage> {
                     child: Text(
                       "Prepare for your exam by practicing questions ",
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width* 0.03,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
-                        color: (Theme.of(context).textTheme.bodyLarge?.color)==themelight?Colors.black:Colors.white,
+                        color:
+                            (Theme.of(context).textTheme.bodyLarge?.color) ==
+                                    themelight
+                                ? Colors.black
+                                : Colors.white,
                       ),
                     ),
                   ),
@@ -102,10 +115,14 @@ class _WelcomePageState extends State<WelcomePage> {
                     child: Text(
                       "and testing your knowledge at your own pace.",
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width* 0.03,
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
-                        color: (Theme.of(context).textTheme.bodyLarge?.color)==themelight?Colors.black:Colors.white,
+                        color:
+                            (Theme.of(context).textTheme.bodyLarge?.color) ==
+                                    themelight
+                                ? Colors.black
+                                : Colors.white,
                       ),
                     ),
                   ),

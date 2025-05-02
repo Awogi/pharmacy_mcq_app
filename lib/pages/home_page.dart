@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pharmacy_mcq_app/widget/constant_color.dart';
 import 'package:pharmacy_mcq_app/widget/navigation_bar.dart';
 import 'package:provider/provider.dart';
-import '../widget/Color_theme_provider.dart';
-import '../pages/Diploma_in_Pharmacy.dart';
-import '../pages/Bachelors_in_Pharmacy.dart';
-import '../widget/navigation_bar.dart';
+import '../widget/color_theme_provider.dart';
+import '../pages/diploma_in_pharmacy.dart';
+import '../pages/bachelors_in_pharmacy.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -21,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:NavBar(username:"username",email:"email",) ,
+      drawer:NavBar(username:widget.username,email:widget.email,) ,
       // appBar: AppBar(
       //   // title: Center(
       //   //   child: Text(
@@ -46,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       //     ),
       //   ],
       // ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Stack(
@@ -190,21 +189,20 @@ class _HomePageState extends State<HomePage> {
               top: MediaQuery.of(context).size.height * 0.05,
               left: MediaQuery.of(context).size.width * 0.85,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: Container(
-                child: IconButton(
-                  onPressed: () {
-                    Provider.of<ThemeProvider>(
-                      context,
-                      listen: false,
-                    ).toggleTheme();
-                  },
-                  icon: Icon(
-                    Icons.person,
-                    color:
-                        Theme.of(context).iconTheme.color == Colors.black
-                            ? Colors.white
-                            : Colors.black,
-                  ),
+
+              child: IconButton(
+                onPressed: () {
+                  Provider.of<ThemeProvider>(
+                    context,
+                    listen: false,
+                  ).toggleTheme();
+                },
+                icon: Icon(
+                  Icons.person,
+                  color:
+                      Theme.of(context).iconTheme.color == Colors.black
+                          ? Colors.white
+                          : Colors.black,
                 ),
               ),
             ),
