@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_mcq_app/widget/question_provider.dart';
 import 'pages/welcome_page.dart';
 import './screen/splash.dart';
 import 'widget/color_theme_provider.dart';
@@ -27,6 +28,7 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => PageNavigator()),
+        ChangeNotifierProvider(create: (context)=>QuestionProvider()),
       ],
       child: const MyApp(),
     ),

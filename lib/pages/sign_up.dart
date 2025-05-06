@@ -5,9 +5,6 @@ import '../pages/log_in.dart';
 import '../widget/constant_color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:email_validator/email_validator.dart';
-import '../pages/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -332,66 +329,4 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  void _signUp() async {
-    if (_emailController.text == "" ||
-        _passwordController.text == "" ||
-        _userController.text == "") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill all the fields.")),
-      );
-      return; // Exit the function if any field is empty
-    }
-    
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
-    try {
-      User? user = await FirebaseAuthService().createUserWithEmailAndPassword(
-  _userController.text,
-  _emailController.text,
-  _passwordController.text,
-);
-
-      // Dismiss the loading dialog
-      if (mounted) Navigator.of(context).pop();
-      if (user != null) {
-        await FirebaseFirestore.instance
-    .collection('users')
-    .doc(user.uid)
-    .set({'username': _userController.text,'email':_emailController.text.trim()});
-
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(username:_userController.text.trim(), email:_emailController.text.trim())),
-          (route) => false,
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Sign-up failed. Please try again.")),
-        );
-      }
-    } on FirebaseAuthException catch (e) {
-      if (mounted) Navigator.of(context).pop();
-      String errorMessage = "An error occurred. Please try again.";
-
-      if (e.code == 'user-not-found') {
-        errorMessage = "No user found with this email.";
-      } else if (e.code == 'invalid username') {
-        errorMessage = "Incorrect username.";
-      } else if (e.code == 'invalid-email') {
-        errorMessage = "Invalid email address.";
-      }
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(errorMessage)));
-    } catch (e) {
-      if (mounted) Navigator.of(context).pop(); // Ensure the dialog is closed
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("An unexpected error occurred.")),
-      );
-    }
-  }
 }

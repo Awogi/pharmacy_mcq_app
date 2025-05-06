@@ -4,11 +4,7 @@ import '../widget/constant_color.dart';
 import '../firebase_services/authentication.dart';
 import '../firebase_services/form_container.dart';
 import '../pages/sign_up.dart';
-import '../pages/Send_Otp.dart';
-import '../pages/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../firebase_services/authentication.dart';
+import 'send_Otp.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -288,64 +284,4 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  void _LogIn() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
-
-    // Validate fields first
-    if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please fill all the fields")),
-      );
-      return;
-    }
-
-    try {
-      User? user = await AuthenticationService().signInWithEmailAndPassword(email, password);
-
-
-      if (user != null) {
-        // Fetch username from Firestore after successful login
-        DocumentSnapshot userDoc =
-            await FirebaseFirestore.instance
-                .collection('users')
-                .doc(user.uid)
-                .get();
-
-        String username = userDoc['username'];
-        String email = userDoc['email'];
-
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(username: username,email: email)),
-          (route) => false,
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Login failed. Please try again.")),
-        );
-      }
-    } on FirebaseAuthException catch (e) {
-      String errorMessage = "An error occurred. Please try again.";
-
-      if (e.code == 'user-not-found') {
-        errorMessage = "No user found with this email.";
-      } else if (e.code == 'wrong-password') {
-        errorMessage = "Incorrect password.";
-      } else if (e.code == 'invalid-email') {
-        errorMessage = "Invalid email address.";
-      } else if (e.code == 'too-many-requests') {
-        errorMessage = "Too many requests. Try again later.";
-      }
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(errorMessage)));
-    } catch (e) {
-      print("Unexpected error: $e"); // helpful for debugging
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("An unexpected error occurred.")),
-      );
-    }
-  }
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_mcq_app/pages/subject_for_diploma.dart/subject5.dart';
+import 'package:pharmacy_mcq_app/pages/subject_for_diploma/Model_Question.dart';
+import 'package:pharmacy_mcq_app/pages/subject_for_diploma/test_Question1.dart';
 import '../widget/constant_color.dart';
 import '../widget/subjecttile.dart';
-import '../pages/subject_for_diploma.dart/subject1.dart';
-import '../pages/subject_for_diploma.dart/subject2.dart';
-import '../pages/subject_for_diploma.dart/subject3.dart';
-import '../pages/subject_for_diploma.dart/subject4.dart';
+import '../widget/subject_wise_question_screen.dart';
 
 class DiplomaInPharmacy extends StatefulWidget {
   const DiplomaInPharmacy({super.key});
@@ -113,45 +111,25 @@ class _DiplomaInPharmacyState extends State<DiplomaInPharmacy> {
                           (subject) => SubjectTile(
                             title: subject,
                             onTap: () {
-                              if (subject == "Pharmaceutics") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Subject1(),
-                                  ),
-                                );
-                              } else if (subject ==
-                                  "Pharmaceutical Chemistry") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Subject2(),
-                                  ),
-                                );
-                              } else if (subject ==
-                                  "Pharmacology & Toxicology") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Subject3(),
-                                  ),
-                                );
-                              } else if (subject == "Community Pharmacy") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Subject4(),
-                                  ),
-                                );
-                              } else if (subject == "Model Questions") {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ModelQuestion(),
-                                  ),
-                                );
-                              }
-                            },
+  if (subject == "Pharmaceutics" ||
+      subject == "Pharmaceutical Chemistry" ||
+      subject == "Pharmacology & Toxicology" ||
+      subject == "Community Pharmacy") {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SubjectWiseQuestionsScreen(subject: subject),
+      ),
+    );
+  } else if (subject == "Model Questions") {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ModelQuestion(),
+      ),
+    );
+  }
+},
                           ),
                         )
                         .toList(),
