@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                   ).toggleTheme();
                 },
                 icon: Icon(
-                  Icons.person,
+                  Icons.brightness_5,
                   color:
                       Theme.of(context).iconTheme.color == Colors.black
                           ? Colors.white

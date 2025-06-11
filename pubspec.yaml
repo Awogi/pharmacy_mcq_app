@@ -20,6 +20,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.5.2
   flutter_launcher_icons: ^0.14.3
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +32,7 @@ flutter:
   assets:
     - assets/images/Nepal_Pharmacy_Counsil.png
     - assets/images/undraw_medicine_hqqg.png
+    - assets/images/default_profile_picture.jpeg
 
   fonts:
     - family: Roboto

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final String username;
+  final String email;
+  const ProfilePage({super.key, required this.username , required this.email});
 
   @override
   State<ProfilePage> createState() => ProfilePageState();
