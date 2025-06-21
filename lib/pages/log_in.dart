@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../widget/constant_color.dart';
@@ -5,7 +6,6 @@ import '../firebase_services/authentication.dart';
 import '../firebase_services/form_container.dart';
 import '../pages/sign_up.dart';
 import 'send_Otp.dart';
-
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -168,6 +168,68 @@ class _SignInPageState extends State<SignInPage> {
               top: MediaQuery.of(context).size.height * 0.63,
               left:
                   kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.2,
+              right:
+                  kIsWeb
+                      ? MediaQuery.of(context).size.width * 0.2
+                      : MediaQuery.of(context).size.width * 0.1,
+              child: GestureDetector(
+                onTap: () async {
+                  User? user = FirebaseAuth.instance.currentUser;
+                  if (user == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("No user signed in.")),
+                    );
+                    return;
+                  }
+                  await user.reload(); // Reload to refresh verification status
+                  user =
+                      FirebaseAuth
+                          .instance
+                          .currentUser; // Refresh user object after reload
+                  if (user != null && !user.emailVerified) {
+                    try {
+                      await user.sendEmailVerification();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Verification e-mail resent. Please Check your mail',
+                          ),
+                        ),
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Failed to send verification email: $e',
+                          ),
+                        ),
+                      );
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Your email is already verified.'),
+                      ),
+                    );
+                  }
+                },
+                child: Text(
+                  "Resend Verification",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.03,
+                    fontFamily: "Ubuntu",
+                    color: themeblue,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.63,
+              left:
+                  kIsWeb
                       ? MediaQuery.of(context).size.width * 0.6
                       : MediaQuery.of(context).size.width * 0.6,
               right:
@@ -283,5 +345,4 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-
 }

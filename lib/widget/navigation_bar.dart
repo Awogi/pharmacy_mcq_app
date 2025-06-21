@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pharmacy_mcq_app/pages/achivements.dart';
-import 'package:pharmacy_mcq_app/pages/profile.dart';
+import 'package:pharmacy_mcq_app/widget/images/profile.dart';
 import 'package:pharmacy_mcq_app/pages/settings_page.dart';
 import 'package:pharmacy_mcq_app/widget/constant_color.dart';
 
@@ -45,21 +46,34 @@ class _NavBarState extends State<NavBar> {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-              color: themegreydarker,
-            ),
+            decoration: BoxDecoration(color: themegreydarker),
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: _pickImage,
+                  // onTap: () {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder:
+                  //           (context) => ProfilePage(
+                  //             username: u,
+                  //             email: email,
+                  //             imageUrl: imageUrl,
+                  //           ),
+                  //     ),
+                  //   );
+                  // },
                   child: CircleAvatar(
                     radius: 30,
                     backgroundColor: themegrey,
-                    backgroundImage: _pickedImage != null
-                        ? FileImage(_pickedImage!)
-                        : widget.imageUrl != null
+                    backgroundImage:
+                        _pickedImage != null
+                            ? FileImage(_pickedImage!)
+                            : widget.imageUrl != null
                             ? NetworkImage(widget.imageUrl!) as ImageProvider
-                            : AssetImage('assets/images/default_profile_picture.jpeg'),
+                            : AssetImage(
+                              'assets/images/default_profile_picture.jpeg',
+                            ),
                   ),
                 ),
                 SizedBox(width: 16),
@@ -73,10 +87,11 @@ class _NavBarState extends State<NavBar> {
                         style: TextStyle(
                           fontSize: 18,
                           fontFamily: "Ubuntu",
-                          color: Theme.of(context).textTheme.bodyLarge?.color ==
-                                  themelight
-                              ? Colors.black
-                              : Colors.white,
+                          color:
+                              Theme.of(context).textTheme.bodyLarge?.color ==
+                                      themelight
+                                  ? Colors.black
+                                  : Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -86,10 +101,11 @@ class _NavBarState extends State<NavBar> {
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: "Ubuntu",
-                          color: Theme.of(context).textTheme.bodyLarge?.color ==
-                                  themelight
-                              ? Colors.black
-                              : Colors.white,
+                          color:
+                              Theme.of(context).textTheme.bodyLarge?.color ==
+                                      themelight
+                                  ? Colors.black
+                                  : Colors.white,
                         ),
                       ),
                     ],
@@ -98,84 +114,91 @@ class _NavBarState extends State<NavBar> {
               ],
             ),
           ),
-          // ... rest of your ListTiles
 
+          // ... rest of your ListTiles
           ListTile(
             leading: Icon(Icons.person, color: themeblue),
-            title: Text("Profile",
-            style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Ubuntu",
-                          color: (Theme.of(context).textTheme.bodyLarge?.color) ==
-                                    themelight
-                                ? Colors.black
-                                : Colors.white,
-                        ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: "Ubuntu",
+                color:
+                    (Theme.of(context).textTheme.bodyLarge?.color) == themelight
+                        ? Colors.black
+                        : Colors.white,
+              ),
             ),
             onTap: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(username:widget.username,email:widget.email,),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => ProfilePage(
+                        username: widget.username,
+                        email: widget.email,
+                        imageUrl: widget.imageUrl,
                       ),
-                    );
+                ),
+              );
             },
           ),
           ListTile(
             leading: Icon(Icons.settings, color: themeblue),
-            title: Text("Settings",
-            style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Ubuntu",
-                          color: (Theme.of(context).textTheme.bodyLarge?.color) ==
-                                    themelight
-                                ? Colors.black
-                                : Colors.white,
-                        ),
+            title: Text(
+              "Settings",
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: "Ubuntu",
+                color:
+                    (Theme.of(context).textTheme.bodyLarge?.color) == themelight
+                        ? Colors.black
+                        : Colors.white,
+              ),
             ),
             onTap: () {
-                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SettingPage(),
-                      ),
-                    );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingPage()),
+              );
             },
           ),
           ListTile(
             leading: Icon(Icons.emoji_events, color: themeblue),
-            title: Text("Achievements",
-            style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Ubuntu",
-                          color: (Theme.of(context).textTheme.bodyLarge?.color) ==
-                                    themelight
-                                ? Colors.black
-                                : Colors.white,
-                        ),
+            title: Text(
+              "Achievements",
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: "Ubuntu",
+                color:
+                    (Theme.of(context).textTheme.bodyLarge?.color) == themelight
+                        ? Colors.black
+                        : Colors.white,
+              ),
             ),
             onTap: () {
-                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => acheivementPage(),
-                      ),
-                    );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => acheivementPage()),
+              );
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.logout, color:themeblue),
-            title: Text("Logout", style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Ubuntu",
-                          color: (Theme.of(context).textTheme.bodyLarge?.color) ==
-                                    themelight
-                                ? Colors.black
-                                : Colors.white,
-                        ),),
-            onTap: () {
-              
+            leading: Icon(Icons.logout, color: themeblue),
+            title: Text(
+              "Logout",
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: "Ubuntu",
+                color:
+                    (Theme.of(context).textTheme.bodyLarge?.color) == themelight
+                        ? Colors.black
+                        : Colors.white,
+              ),
+            ),
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
             },
           ),
         ],

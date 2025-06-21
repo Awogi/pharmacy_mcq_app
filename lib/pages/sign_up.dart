@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pharmacy_mcq_app/pages/signin_with_google.dart';
+
 import '../firebase_services/authentication.dart';
 import '../firebase_services/form_container.dart';
 import '../pages/log_in.dart';
@@ -14,6 +17,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final GoogleAuthService _authService = GoogleAuthService();
   final AuthenticationService _auth =
       AuthenticationService(); // Create an instance of `FirebaseAuthService` to handle authentication logic.
 
@@ -114,7 +118,7 @@ class _SignupPageState extends State<SignupPage> {
                       kIsWeb
                           ? MediaQuery.of(context).size.height * 0.07
                           : MediaQuery.of(context).size.width * 0.18,
-        
+
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -270,9 +274,53 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-        
+
+              // Google Sign-In button
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.83,
+                left:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.35
+                        : MediaQuery.of(context).size.width * 0.3,
+                right:
+                    kIsWeb
+                        ? MediaQuery.of(context).size.width * 0.35
+                        : MediaQuery.of(context).size.width * 0.3,
+                child: ElevatedButton.icon(
+                  onPressed: () async {
+                    await _authService.signInwithGoogle(context);
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.google,
+                    color: Colors.red,
+                    size: 24,
+                  ),
+                  label: Text(
+                    'Continue with Google',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.035,
+                      fontFamily: "Ubuntu",
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: themeblue,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 15,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 5,
+                  ),
+                ),
+              ),
+
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.90,
                 left:
                     kIsWeb
                         ? MediaQuery.of(context).size.width * 0.35
@@ -281,14 +329,15 @@ class _SignupPageState extends State<SignupPage> {
                     kIsWeb
                         ? MediaQuery.of(context).size.width * 0.25
                         : MediaQuery.of(context).size.width * 0.1,
-        
+
                 child: Text(
                   "Already have an account?",
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.03,
                     fontFamily: "Ubuntu",
                     color:
-                        Theme.of(context).textTheme.bodyLarge?.color == themelight
+                        Theme.of(context).textTheme.bodyLarge?.color ==
+                                themelight
                             ? Colors.black
                             : Colors.white,
                     fontWeight: FontWeight.bold,
@@ -305,7 +354,7 @@ class _SignupPageState extends State<SignupPage> {
                     kIsWeb
                         ? MediaQuery.of(context).size.width * 0.25
                         : MediaQuery.of(context).size.width * 0.2,
-        
+
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -330,5 +379,4 @@ class _SignupPageState extends State<SignupPage> {
       ),
     );
   }
-
 }
